@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BundleDefinitionDeserializer.cs" />
     <Compile Include="BundleDefinitionSerializer.cs" />
     <Compile Include="BundleDefinitionFileSystem.cs" />
     <Compile Include="Definition\Command.cs" />

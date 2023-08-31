@@ -12,14 +12,17 @@ namespace StsCustomBundleBuilderConsoleTest
     {
         static void Main(string[] args)
         {
+            var bundleFileSystem = new BundleDefinitionFileSystem(@"C:\Temp\TestBundleBuilder", "CustomBundle1.0.0.xml");
+
+            #region Create Bundle
+            bundleFileSystem.CreateFoldersIfNotExist();
+
             var bundleDefinition = new STSSoftwareBundleDefinition("CustomBundle1.0.0", "Custom Bundle 1.0.0");
             bundleDefinition.StsSoftware = new STSSoftwareBundleDefinition.STSSoftware("NISTS0.0.0");
 
             AddProductsToBundle(bundleDefinition);
             AddCustomActionsToBundle(bundleDefinition);
 
-            var bundleFileSystem = new BundleDefinitionFileSystem(@"C:\Temp\TestBundleBuilder", "CustomBundle1.0.0.xml");
-            bundleFileSystem.CreateFoldersIfNotExist();
 
             BundleDefinitionSerializer.Serialize(bundleDefinition, bundleFileSystem.BundleDefinitionFilePath);
 
@@ -32,6 +35,13 @@ namespace StsCustomBundleBuilderConsoleTest
             {
                 BundleDefinitionSerializer.Serialize(customAction.Definition, bundleFileSystem.CustomDefinitionFolderPath);
             }
+            #endregion
+
+            #region Deserialize Bundle
+            BundleDefinitionDeserializer.Deserialize(bundleFileSystem, out bundleDefinition);
+
+            #endregion
+
         }
 
         private static void AddCustomActionsToBundle(STSSoftwareBundleDefinition bundleDefinition)
