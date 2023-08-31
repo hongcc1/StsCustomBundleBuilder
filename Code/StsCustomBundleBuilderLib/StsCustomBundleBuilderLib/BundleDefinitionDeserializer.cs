@@ -11,21 +11,21 @@ namespace StsCustomBundleBuilderLib
             
             foreach (var product in bundleDefinition.ProductList)
             {
-                if (product is STSSoftwareBundleDefinition.NIInstaller)
+                if (product is NIInstaller)
                 {
-                    var path = System.IO.Path.Combine(bundleFileSystem.NIProductDefinitionFolderPath, $"{product.Key}{product.Version}.xml");
+                    var path = System.IO.Path.Combine(bundleFileSystem.NIProductDefinitionFolderPath, $"{product.Definition.FileName}");
                     product.Definition = Deserialize<NIInstallerDefinition>(path);
                 }
                 else
                 {
-                    var path = System.IO.Path.Combine(bundleFileSystem.CustomDefinitionFolderPath, $"{product.Key}{product.Version}.xml");
+                    var path = System.IO.Path.Combine(bundleFileSystem.CustomDefinitionFolderPath, $"{product.Definition.FileName}");
                     product.Definition = Deserialize<CustomInstallerDefinition>(path);
                 }    
             }
 
             foreach (var customAction in bundleDefinition.CustomActions)
             {
-                var path = System.IO.Path.Combine(bundleFileSystem.CustomDefinitionFolderPath, $"{customAction.Key}.xml");
+                var path = System.IO.Path.Combine(bundleFileSystem.CustomDefinitionFolderPath, $"{customAction.Definition.FileName}");
                 customAction.Definition = Deserialize<CustomActionDefinition>(path);
             }
         }

@@ -10,5 +10,6 @@ namespace StsCustomBundleBuilderLib.Definition
         string DisplayName { get; set; }
         List<Command> InstallCommands { get; set; }
         List<Command> UninstallCommands { get; set; }
+        string FileName { get; }
     }
 }

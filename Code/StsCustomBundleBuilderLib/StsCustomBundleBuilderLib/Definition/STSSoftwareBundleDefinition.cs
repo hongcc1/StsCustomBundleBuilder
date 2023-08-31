@@ -55,6 +55,12 @@ namespace StsCustomBundleBuilderLib.Definition
             }
         }
 
+        [XmlIgnore]
+        public string FileName
+        {
+            get { return $"{Key}.xml"; }
+        }
+
         /// <summary>
         /// Parameterless constructor for serialization
         /// </summary>
@@ -100,105 +106,105 @@ namespace StsCustomBundleBuilderLib.Definition
                 var keys = CustomActions.Select(x => x.Key);
                 return keys.Distinct().Count() == keys.Count();
             }
+        }        
+    }
+
+    public class STSSoftware
+    {
+        [XmlAttribute("name")]
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Parameterless constructor for serialization
+        /// </summary>
+        public STSSoftware()
+        {
+
         }
 
-        public class STSSoftware
+        public STSSoftware(string name)
         {
-            [XmlAttribute("name")]
-            public string Name { get; set; }
+            Name = name;
+        }
+    }
 
-            /// <summary>
-            /// Parameterless constructor for serialization
-            /// </summary>
-            public STSSoftware()
-            {
-                
-            }
+    public abstract class ProductInstaller
+    {
+        [XmlAttribute("key")]
+        public string Key { get; set; }
 
-            public STSSoftware(string name)
-            {
-                Name = name;
-            }
+        [XmlAttribute("version")]
+        public string Version { get; set; }
+
+        [XmlIgnore]
+        public IProductInstallerDefinition Definition { get; set; }
+
+        /// <summary>
+        /// Parameterless constructor for serialization
+        /// </summary>
+        public ProductInstaller()
+        { }
+    }
+
+    public class NIInstaller : ProductInstaller
+    {
+        public NIInstaller()
+        {
+            Definition = new NIInstallerDefinition();
         }
 
-        public abstract class ProductInstaller
+        public NIInstaller(string key, string version)
         {
-            [XmlAttribute("key")]
-            public string Key { get; set; }
+            Key = key;
+            Version = version;
+            Definition = new NIInstallerDefinition() { Key = key, Version = Version };
+        }
+    }
 
-            [XmlAttribute("version")]
-            public string Version { get; set; }
-
-            [XmlIgnore]
-            public IProductInstallerDefinition Definition { get; set; }
-
-            /// <summary>
-            /// Parameterless constructor for serialization
-            /// </summary>
-            public ProductInstaller()
-            { }
+    public class CustomInstaller : ProductInstaller
+    {
+        public CustomInstaller()
+        {
+            Definition = new CustomInstallerDefinition();
         }
 
-        public class NIInstaller : ProductInstaller
+        public CustomInstaller(string key, string version)
         {
-            public NIInstaller()
-            {
-                Definition = new NIInstallerDefinition();
-            }
+            Key = key;
+            Version = version;
+            Definition = new CustomInstallerDefinition() { Key = key, Version = Version };
+        }
+    }
 
-            public NIInstaller(string key, string version)
-            {
-                Key = key;
-                Version = version;
-                Definition = new NIInstallerDefinition() { Key = key, Version = Version };
-            }
+    public class CustomAction
+    {
+        [XmlAttribute("key")]
+        public string Key { get; set; }
+
+        [XmlAttribute("timing")]
+        public string Timing { get; set; }
+
+        [XmlIgnore]
+        public CustomActionDefinition Definition { get; set; }
+
+        /// <summary>
+        /// Parameterless constructor for serialization
+        /// </summary>
+        public CustomAction()
+        {
+            Definition = new CustomActionDefinition();
         }
 
-        public class CustomInstaller : ProductInstaller
+        /// <summary>
+        /// Custom action
+        /// </summary>
+        /// <param name="key">Unique key for this custom action</param>
+        /// <param name="timingIsPostInstall">True if timing = postinstall. Otherwise timing = preuninstall.</param>
+        public CustomAction(string key, bool timingIsPostInstall)
         {
-            public CustomInstaller()
-            {
-                Definition = new CustomInstallerDefinition();
-            }
-
-            public CustomInstaller(string key, string version)
-            {
-                Key = key;
-                Version = version;
-                Definition = new CustomInstallerDefinition() { Key = key, Version = Version };
-            }
-        }
-
-        public class CustomAction
-        {
-            [XmlAttribute("key")]
-            public string Key { get; set; }
-
-            [XmlAttribute("timing")]
-            public string Timing { get; set; }
-
-            [XmlIgnore]
-            public CustomActionDefinition Definition { get; set; }
-
-            /// <summary>
-            /// Parameterless constructor for serialization
-            /// </summary>
-            public CustomAction()
-            {
-                Definition = new CustomActionDefinition();
-            }
-
-            /// <summary>
-            /// Custom action
-            /// </summary>
-            /// <param name="key">Unique key for this custom action</param>
-            /// <param name="timingIsPostInstall">True if timing = postinstall. Otherwise timing = preuninstall.</param>
-            public CustomAction(string key, bool timingIsPostInstall)
-            {
-                Key = key;
-                Timing = timingIsPostInstall ? "postinstall" : "preuninstall";
-                Definition = new CustomActionDefinition() { Key = key };
-            }
+            Key = key;
+            Timing = timingIsPostInstall ? "postinstall" : "preuninstall";
+            Definition = new CustomActionDefinition() { Key = key };
         }
     }
 }

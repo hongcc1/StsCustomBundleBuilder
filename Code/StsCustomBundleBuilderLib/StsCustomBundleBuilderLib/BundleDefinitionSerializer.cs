@@ -23,14 +23,14 @@ namespace StsCustomBundleBuilderLib
         {
             // If the installer is a NI installer, we want to save it in the NI product path
             var folderPath = installerDefinition is NIInstallerDefinition ? niProductPath : customProductPath;
-            var path = Path.Combine(folderPath, $"{installerDefinition.Key}{installerDefinition.Version}.xml");
+            var path = Path.Combine(folderPath, $"{installerDefinition.FileName}");
 
             SerializeCore(installerDefinition, path);
         }
 
         public static void Serialize(CustomActionDefinition customActionDefinition, string folderPath)
         {
-            var path = Path.Combine(folderPath, $"{customActionDefinition.Key}.xml");
+            var path = Path.Combine(folderPath, $"{customActionDefinition.FileName}");
             SerializeCore(customActionDefinition, path);
         }
 

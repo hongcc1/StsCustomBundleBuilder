@@ -26,5 +26,11 @@ namespace StsCustomBundleBuilderLib.Definition
         [XmlArray("UninstallCommands")]
         [XmlArrayItem("Command")]
         public List<Command> UninstallCommands { get; set; } = new List<Command>();
+
+        [XmlIgnore]
+        public string FileName
+        {
+            get { return $"{Key}{Version}.xml"; }
+        }
     }
 }

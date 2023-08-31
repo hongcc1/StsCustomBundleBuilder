@@ -19,5 +19,11 @@ namespace StsCustomBundleBuilderLib.Definition
         [XmlArray("Commands")]
         [XmlArrayItem("Command")]
         public List<Command> Commands { get; set; } = new List<Command>();
+
+        [XmlIgnore]
+        public string FileName
+        {
+            get { return $"{Key}.xml"; }
+        }
     }
 }
