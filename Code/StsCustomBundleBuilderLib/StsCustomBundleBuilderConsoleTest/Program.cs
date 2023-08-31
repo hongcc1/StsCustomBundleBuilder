@@ -18,7 +18,7 @@ namespace StsCustomBundleBuilderConsoleTest
             bundleFileSystem.CreateFoldersIfNotExist();
 
             var bundleDefinition = new STSSoftwareBundleDefinition("CustomBundle1.0.0", "Custom Bundle 1.0.0");
-            bundleDefinition.StsSoftware = new STSSoftwareBundleDefinition.STSSoftware("NISTS0.0.0");
+            bundleDefinition.StsSoftware = new STSSoftware("NISTS0.0.0");
 
             AddProductsToBundle(bundleDefinition);
             AddCustomActionsToBundle(bundleDefinition);
@@ -47,25 +47,25 @@ namespace StsCustomBundleBuilderConsoleTest
         private static void AddCustomActionsToBundle(STSSoftwareBundleDefinition bundleDefinition)
         {
             // Add Custom Action A
-            var cAction = new STSSoftwareBundleDefinition.CustomAction("CustomActionA", true);
+            var cAction = new CustomAction("CustomActionA", true);
             cAction.Definition.DisplayName = "Custom Action A";
             cAction.Definition.Commands.Add(new Command() { Path = "Custom Action A/A.exe", Parameters = "/silent", SuccessfulExitCodes = "0" });
             bundleDefinition.CustomActions.Add(cAction);
 
             // Add Custom Action B
-            cAction = new STSSoftwareBundleDefinition.CustomAction("CustomActionB", true);
+            cAction = new CustomAction("CustomActionB", true);
             cAction.Definition.DisplayName = "Custom Action B";
             cAction.Definition.Commands.Add(new Command() { Path = "Custom Action B/B.bat", Parameters = "", SuccessfulExitCodes = "0" });
             bundleDefinition.CustomActions.Add(cAction);
 
             // Add Custom Action C1.0.0
-            cAction = new STSSoftwareBundleDefinition.CustomAction("CustomActionC1.0.0", false);
+            cAction = new CustomAction("CustomActionC1.0.0", false);
             cAction.Definition.DisplayName = "Custom Action C 1.0.0";
             cAction.Definition.Commands.Add(new Command() { Path = "Custom Action C/1.0.0/C.exe", Parameters = "/silent", SuccessfulExitCodes = "0" });
             bundleDefinition.CustomActions.Add(cAction);
 
             // Add Custom Action C2.0.0
-            cAction = new STSSoftwareBundleDefinition.CustomAction("CustomActionC2.0.0", false);
+            cAction = new CustomAction("CustomActionC2.0.0", false);
             cAction.Definition.DisplayName = "Custom Action C 2.0.0";
             cAction.Definition.Commands.Add(new Command() { Path = "Custom Action C/2.0.0/C.exe", Parameters = "/silent", SuccessfulExitCodes = "0" });
             bundleDefinition.CustomActions.Add(cAction);
@@ -74,14 +74,14 @@ namespace StsCustomBundleBuilderConsoleTest
         private static void AddProductsToBundle(STSSoftwareBundleDefinition bundleDefinition)
         {
             // Add NI Product A
-            ProductInstaller product = new STSSoftwareBundleDefinition.NIInstaller("NIProductA", "1.1.1");
+            ProductInstaller product = new NIInstaller("NIProductA", "1.1.1");
             product.Definition.DisplayName = "NI Product A";
             product.Definition.InstallCommands.Add(new Command() { Path = "NI Product A/1.1.1/install.exe", Parameters = "--passive --accept-eulas --prevent-reboot", SuccessfulExitCodes = "0,-125071" });
             product.Definition.UninstallCommands.Add(new Command() { Path = "C:\\Program Files\\National Instruments\\NI Package Manager\\nipkg.exe", Parameters = "remove ni-productA-1.1.1 --allow-uninstall -y", SuccessfulExitCodes = "0,-125071" });
             bundleDefinition.ProductList.Add(product);
 
             // Add Custom Installer Product
-            product = new STSSoftwareBundleDefinition.CustomInstaller("CustomProduct", "2.2.2");
+            product = new CustomInstaller("CustomProduct", "2.2.2");
             product.Definition.DisplayName = "Custom Product";
             product.Definition.InstallCommands.Add(new Command()
             {
@@ -100,7 +100,7 @@ namespace StsCustomBundleBuilderConsoleTest
             bundleDefinition.ProductList.Add(product);
 
             // Add NI Product B
-            product = new STSSoftwareBundleDefinition.NIInstaller("NIProductB", "2.2.2");
+            product = new NIInstaller("NIProductB", "2.2.2");
             product.Definition.DisplayName = "NI Product B";
             product.Definition.InstallCommands.Add(new Command()
             {

@@ -13,19 +13,19 @@ namespace StsCustomBundleBuilderLib
             {
                 if (product is NIInstaller)
                 {
-                    var path = System.IO.Path.Combine(bundleFileSystem.NIProductDefinitionFolderPath, $"{product.Definition.FileName}");
+                    var path = System.IO.Path.Combine(bundleFileSystem.NIProductDefinitionFolderPath, $"{product.Key}{product.Version}.xml");
                     product.Definition = Deserialize<NIInstallerDefinition>(path);
                 }
                 else
                 {
-                    var path = System.IO.Path.Combine(bundleFileSystem.CustomDefinitionFolderPath, $"{product.Definition.FileName}");
+                    var path = System.IO.Path.Combine(bundleFileSystem.CustomDefinitionFolderPath, $"{product.Key}{product.Version}.xml");
                     product.Definition = Deserialize<CustomInstallerDefinition>(path);
                 }    
             }
 
             foreach (var customAction in bundleDefinition.CustomActions)
             {
-                var path = System.IO.Path.Combine(bundleFileSystem.CustomDefinitionFolderPath, $"{customAction.Definition.FileName}");
+                var path = System.IO.Path.Combine(bundleFileSystem.CustomDefinitionFolderPath, $"{customAction.Key}.xml");
                 customAction.Definition = Deserialize<CustomActionDefinition>(path);
             }
         }

@@ -139,6 +139,9 @@ namespace StsCustomBundleBuilderLib.Definition
         [XmlIgnore]
         public IProductInstallerDefinition Definition { get; set; }
 
+        [XmlIgnore]
+        public string InstallerType { get; set; }
+
         /// <summary>
         /// Parameterless constructor for serialization
         /// </summary>
@@ -151,6 +154,7 @@ namespace StsCustomBundleBuilderLib.Definition
         public NIInstaller()
         {
             Definition = new NIInstallerDefinition();
+            InstallerType = "NIInstaller";
         }
 
         public NIInstaller(string key, string version)
@@ -158,6 +162,7 @@ namespace StsCustomBundleBuilderLib.Definition
             Key = key;
             Version = version;
             Definition = new NIInstallerDefinition() { Key = key, Version = Version };
+            InstallerType = "NIInstaller";
         }
     }
 
@@ -166,6 +171,7 @@ namespace StsCustomBundleBuilderLib.Definition
         public CustomInstaller()
         {
             Definition = new CustomInstallerDefinition();
+            InstallerType = "CustomInstaller";
         }
 
         public CustomInstaller(string key, string version)
@@ -173,6 +179,7 @@ namespace StsCustomBundleBuilderLib.Definition
             Key = key;
             Version = version;
             Definition = new CustomInstallerDefinition() { Key = key, Version = Version };
+            InstallerType = "CustomInstaller";
         }
     }
 
