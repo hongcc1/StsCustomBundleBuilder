@@ -18,7 +18,7 @@ namespace StsCustomBundleBuilderLib.Definition
 
         [XmlArray("Commands")]
         [XmlArrayItem("Command")]
-        public List<Command> Commands { get; set; } = new List<Command>();
+        public List<CommandWithoutLog> Commands { get; set; } = new List<CommandWithoutLog>();
 
         [XmlIgnore]
         public string FileName

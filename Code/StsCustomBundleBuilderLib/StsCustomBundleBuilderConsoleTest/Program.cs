@@ -49,25 +49,25 @@ namespace StsCustomBundleBuilderConsoleTest
             // Add Custom Action A
             var cAction = new CustomAction("CustomActionA", true);
             cAction.Definition.DisplayName = "Custom Action A";
-            cAction.Definition.Commands.Add(new Command() { Path = "Custom Action A/A.exe", Parameters = "/silent", SuccessfulExitCodes = "0" });
+            cAction.Definition.Commands.Add(new CommandWithoutLog() { Path = "Custom Action A/A.exe", Parameters = "/silent", SuccessfulExitCodes = "0" });
             bundleDefinition.CustomActions.Add(cAction);
 
             // Add Custom Action B
             cAction = new CustomAction("CustomActionB", true);
             cAction.Definition.DisplayName = "Custom Action B";
-            cAction.Definition.Commands.Add(new Command() { Path = "Custom Action B/B.bat", Parameters = "", SuccessfulExitCodes = "0" });
+            cAction.Definition.Commands.Add(new CommandWithoutLog() { Path = "Custom Action B/B.bat", Parameters = "", SuccessfulExitCodes = "0" });
             bundleDefinition.CustomActions.Add(cAction);
 
             // Add Custom Action C1.0.0
             cAction = new CustomAction("CustomActionC1.0.0", false);
             cAction.Definition.DisplayName = "Custom Action C 1.0.0";
-            cAction.Definition.Commands.Add(new Command() { Path = "Custom Action C/1.0.0/C.exe", Parameters = "/silent", SuccessfulExitCodes = "0" });
+            cAction.Definition.Commands.Add(new CommandWithoutLog() { Path = "Custom Action C/1.0.0/C.exe", Parameters = "/silent", SuccessfulExitCodes = "0" });
             bundleDefinition.CustomActions.Add(cAction);
 
             // Add Custom Action C2.0.0
             cAction = new CustomAction("CustomActionC2.0.0", false);
             cAction.Definition.DisplayName = "Custom Action C 2.0.0";
-            cAction.Definition.Commands.Add(new Command() { Path = "Custom Action C/2.0.0/C.exe", Parameters = "/silent", SuccessfulExitCodes = "0" });
+            cAction.Definition.Commands.Add(new CommandWithoutLog() { Path = "Custom Action C/2.0.0/C.exe", Parameters = "/silent", SuccessfulExitCodes = "0" });
             bundleDefinition.CustomActions.Add(cAction);
         }
 

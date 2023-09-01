@@ -45,6 +45,7 @@
     <Compile Include="BundleDefinitionDeserializer.cs" />
     <Compile Include="BundleDefinitionSerializer.cs" />
     <Compile Include="BundleDefinitionFileSystem.cs" />
+    <Compile Include="Definition\CommandWithoutLog.cs" />
     <Compile Include="Definition\Command.cs" />
     <Compile Include="Definition\CustomActionDefinition.cs" />
     <Compile Include="Definition\CustomInstallerDefinition.cs" />
