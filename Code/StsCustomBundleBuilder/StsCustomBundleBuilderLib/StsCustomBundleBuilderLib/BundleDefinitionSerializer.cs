@@ -36,10 +36,13 @@ namespace StsCustomBundleBuilderLib
 
         private static void SerializeCore<T>(T definition, string path)
         {
-            var serializer = new XmlSerializer(definition.GetType());
-            var fileWriter = new FileStream(path, FileMode.Create);
-            serializer.Serialize(fileWriter, definition, new XmlSerializerNamespaces(new[] { XmlQualifiedName.Empty }));
-            fileWriter.Close();
+            using (StreamWriter streamWriter = new StreamWriter(path))
+            {
+                var serializer = new XmlSerializer(definition.GetType(), "");
+                var namespaces = new XmlSerializerNamespaces();
+                namespaces.Add("", "http://www.ni.com/STSSoftware/VersionSelector/STSSoftwareBundle.xsd");
+                serializer.Serialize(streamWriter, definition, namespaces);
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ namespace StsCustomBundleBuilderLib
 
         private static T Deserialize<T>(string path)
         {
-            var serializer = new XmlSerializer(typeof(T));
+            var serializer = new XmlSerializer(typeof(T), "");
             var fileReader = new System.IO.StreamReader(path);
             var definition = (T) serializer.Deserialize(fileReader);
             fileReader.Close();

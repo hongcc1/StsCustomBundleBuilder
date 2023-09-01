@@ -19,6 +19,9 @@
 		<Item Name="Typedef" Type="Folder" URL="../Typedef">
 			<Property Name="NI.DISK" Type="Bool">true</Property>
 		</Item>
+		<Item Name="StsCustomBundleBuilderLib" Type="Folder">
+			<Item Name="StsCustomBundleBuilderLib.dll" Type="Document" URL="../StsCustomBundleBuilderLib/StsCustomBundleBuilderLib.dll"/>
+		</Item>
 		<Item Name="Bundle Builder.lvclass" Type="LVClass" URL="../Bundle Builder/Bundle Builder.lvclass"/>
 		<Item Name="Main.vi" Type="VI" URL="../Main.vi"/>
 		<Item Name="Dependencies" Type="Dependencies">
@@ -64,7 +67,6 @@
 				<Item Name="BuildHelpPath.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/BuildHelpPath.vi"/>
 				<Item Name="GetHelpDir.vi" Type="VI" URL="/&lt;vilib&gt;/Utility/error.llb/GetHelpDir.vi"/>
 			</Item>
-			<Item Name="StsCustomBundleBuilderLib.dll" Type="Document" URL="../../StsCustomBundleBuilderLib/StsCustomBundleBuilderLib/bin/Debug/StsCustomBundleBuilderLib.dll"/>
 			<Item Name="mscorlib" Type="VI" URL="mscorlib">
 				<Property Name="NI.PreserveRelativePath" Type="Bool">true</Property>
 			</Item>
