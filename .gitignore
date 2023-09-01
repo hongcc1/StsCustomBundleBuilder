@@ -400,3 +400,4 @@ FodyWeavers.xsd
 # Ignore LV temporary files.
 *.aliases
 *.lvlps
+builds
