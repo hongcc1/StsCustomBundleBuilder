@@ -16,6 +16,9 @@ namespace StsCustomBundleBuilderLib.Definition
 
         [XmlAttribute("displayName")]
         public string DisplayName { get; set; }
+        
+        [XmlAttribute(AttributeName = "schemaVersion")]
+        public string SchemaVersion { get; set; } = "19.5";
 
         [XmlElement("STSSoftware")]
         public STSSoftware StsSoftware { get; set; }
@@ -25,35 +28,9 @@ namespace StsCustomBundleBuilderLib.Definition
         [XmlArrayItem("CustomInstaller", typeof(CustomInstaller))]
         public List<ProductInstaller> ProductList { get; set; } = new List<ProductInstaller>();
 
-        [XmlIgnore]
-        public bool ProductListSpecified
-        {
-            get
-            {
-                return ProductList != null && ProductList.Count > 0;
-            }
-            set
-            {
-                // do nothing
-            }
-        }
-
         [XmlArray("CustomActions")]
         [XmlArrayItem("Action")]
         public List<CustomAction> CustomActions { get; set; } = new List<CustomAction>();
-
-        [XmlIgnore]
-        public bool CustomActionsSpecified
-        {
-            get
-            {
-                return CustomActions != null && CustomActions.Count > 0;
-            }
-            set
-            {
-                // do nothing
-            }
-        }
 
         [XmlIgnore]
         public string FileName

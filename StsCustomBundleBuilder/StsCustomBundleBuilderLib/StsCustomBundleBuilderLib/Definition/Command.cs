@@ -1,4 +1,5 @@
-﻿using System.Xml.Serialization;
+﻿using System;
+using System.Xml.Serialization;
 
 namespace StsCustomBundleBuilderLib.Definition
 {
@@ -12,6 +13,16 @@ namespace StsCustomBundleBuilderLib.Definition
 
         [XmlAttribute("successfulExitCodes")]
         public string SuccessfulExitCodes { get; set; }
+
+        [XmlIgnore]
+        public bool SuccessfulExitCodesSpecified
+        {
+            get
+            {
+                // SuccessfulExitCodes is an optional element to serialize
+                return !String.IsNullOrEmpty(SuccessfulExitCodes);
+            }
+        }
 
         [XmlElement("LogCommand")]
         public LogCommand LogCommand { get; set; }
