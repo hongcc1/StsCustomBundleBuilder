@@ -38,7 +38,9 @@ namespace StsCustomBundleBuilderConsoleTest
             #endregion
 
             #region Deserialize Bundle
-            BundleDefinitionDeserializer.Deserialize(bundleFileSystem, out bundleDefinition);
+            BundleDefinitionDeserializer.Deserialize(bundleFileSystem, out bundleDefinition, out var missingDefinitionFiles);
+            if (missingDefinitionFiles)
+                Console.WriteLine("One or more definition files are missing. Please check the bundle definition file and the product/custom action definition files.");
 
             #endregion
 
